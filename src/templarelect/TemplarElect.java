@@ -48,6 +48,18 @@ public class TemplarElect implements Serializable{
         return voteList.size();
     }
     
+    // reutrn the total number of votes for the congress person
+    public int totalVotes(String congressperson){
+        int total = 0;
+        for (TemplarVote templarVote : voteList) {
+            if (templarVote.getCongressperson().equals(congressperson)) {
+                total += 1;
+            }
+        }
+        
+        return total;
+    }
+    
     // method to save the data in a file
     public void save(String fileName) throws IOException {
         try ( ObjectOutputStream out = new ObjectOutputStream(
