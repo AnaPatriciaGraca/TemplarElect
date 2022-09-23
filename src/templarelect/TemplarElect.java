@@ -5,6 +5,12 @@
 package templarelect;
 
 import Test.TemplarElectException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +18,7 @@ import java.util.List;
  *
  * @author AnaGraca
  */
-public class TemplarElect {
+public class TemplarElect implements Serializable{
 
     List<TemplarVote> voteList = new ArrayList<>();
 
@@ -35,6 +41,27 @@ public class TemplarElect {
             throw new TemplarElectException("Invalid vote!\n" + v.getVoter() + " already voted.");
         }
         
+    }
+    
+    // return the total number of votes
+    public int totalVotes(){
+        return voteList.size();
+    }
+    
+    // method to save the data in a file
+    public void save(String fileName) throws IOException {
+        try ( ObjectOutputStream out = new ObjectOutputStream(
+                new FileOutputStream(fileName));) {
+            out.writeObject(this);
+        }
+    }
+
+    // mehtod to upload data from a file
+    public static TemplarElect load(String fileName) throws IOException, ClassNotFoundException {
+        try ( ObjectInputStream in = new ObjectInputStream(
+                new FileInputStream(fileName))) {
+            return (TemplarElect) in.readObject();
+        }
     }
     
     @Override

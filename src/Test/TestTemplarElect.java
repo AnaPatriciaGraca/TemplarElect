@@ -4,6 +4,10 @@
  */
 package Test;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import templarelect.TemplarElect;
 import templarelect.TemplarVote;
 
@@ -13,17 +17,35 @@ import templarelect.TemplarVote;
  * Class to test the class "TemplarElect"
  */
 public class TestTemplarElect {
-    public static void main(String[] args) throws TemplarElectException {
-        //create election
-        TemplarElect election = new TemplarElect();
+    public static void main(String[] args) throws TemplarElectException, IOException {
+        String fileName = "TemplarElect.obj";
+        
         try{
-            //test adding a vote to the elections
-            election.add(new TemplarVote("Ana", "Antonio"));
-            election.add(new TemplarVote("Maria", "Manuel"));
-            System.out.println(election);
+            //create election
+            TemplarElect election = new TemplarElect();
             
-        }catch (TemplarElectException e){
-            e.show();
+            //try to open file with the votes
+            try {
+                election = TemplarElect.load(fileName);
+            } catch (IOException | ClassNotFoundException e) {
+            }
+            
+            //test adding a vote to the elections
+            //election.add(new TemplarVote("Pedro", "Antonio"));
+            //election.add(new TemplarVote("Ana", "Antonio"));
+            election.add(new TemplarVote("Miguel", "Antonio"));
+            
+            //save file with the votes
+            election.save(fileName);
+            
+            //print votes added
+            System.out.println(election.toString());
+            //print total number of votes 
+            System.out.println(election.totalVotes());
+
+            
+        } catch (TemplarElectException ex) {
+            ex.show();  
         }
         
     }
