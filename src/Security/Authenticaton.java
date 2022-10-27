@@ -25,9 +25,6 @@ public class Authenticaton {
         }
     }
     
-    
-    
-    
     public static void main(String[] args) {
         //Register user  = new Register("Ana", "1234qwer");
         Verifyuser("Ana", "1234qwer");
