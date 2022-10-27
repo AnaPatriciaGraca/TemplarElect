@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package register;
+package Security;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -20,7 +20,7 @@ import utils.SecurityUtils;
 
 /**
  *
- * @author AnaGraca
+ * @author aluno21370
  * 
  * Classe Register permite:
  *  - Gerar um par de chaves
@@ -119,7 +119,6 @@ public class Register {
     // ler chave simetrica
     public static byte[] readSimetricKey_Pub(String user, PrivateKey keyP){
         String filename = user.concat(".sim");
-        System.out.println(keyP);
         try {
             //ler ficheiro
             byte[] secret = Files.readAllBytes(Paths.get(user.concat(".sim")));
@@ -132,20 +131,6 @@ public class Register {
             return null;
         }
         
-    }
-            
-            
-    public static void main(String[] args) {
-        String user = "Ana";
-        String passwd = "12qweasd!#";     
-        
-        Register r = new Register(user, passwd);
-        System.out.println(r.readPrivateKey(user, passwd));
-        
-        System.out.println(r.readSimetricKey_Pub(user, r.readPrivateKey(user, passwd)));
-        
-        
-    }
-    
+    } 
     
 }
