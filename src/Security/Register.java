@@ -31,15 +31,18 @@ import utils.SecurityUtils;
  * 
  */
 public class Register {
-    
+    String name;
+    String passwd;
     public Register(String user, String passwd){
         try {
+            this.name = user;
+            this.passwd = passwd;
             //gerar par de chaves
             KeyPair kp = SecurityUtils.generateRSAKeyPair(2048);
             //guardar chaves
             savePublicKey(user, kp);
             savePrivateKey(user, kp, passwd);
-            saveSimetricKey_Pub(kp.getPublic(), user); 
+            saveSimetricKey_Pub(kp.getPublic(), user);
         } catch (Exception ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
         }       
@@ -72,7 +75,7 @@ public class Register {
         try {
             //gerar chave simetrica
             Key k = SecurityUtils.generateAESKey(256);
-            System.out.println(k.toString());
+            System.out.println(k);
             //encriptar
             byte[] secret = SecurityUtils.encrypt(k.getEncoded(), kPub);
             // guardar num ficheiro
@@ -89,6 +92,7 @@ public class Register {
         try {
             //Ler ficheiro da chave publica
             PublicKey key = SecurityUtils.loadPublicKey(filename);
+            System.out.println(key.getEncoded());
             return key;
         } catch (IOException ex) {
             Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
@@ -122,8 +126,12 @@ public class Register {
         try {
             //ler ficheiro
             byte[] secret = Files.readAllBytes(Paths.get(user.concat(".sim")));
+            
             //desencriptar os dados
-            byte []  plain = SecurityUtils.decrypt(secret, keyP);
+            byte[] plain = SecurityUtils.decrypt(secret, keyP);
+//            KeyFactory keyFactory = KeyFactory.getInstance("AES");
+//            EncodedKeySpec KeySpec = new PKCS8EncodedKeySpec(plain);
+//            Key simKey = keyFactory.generatePrivate(KeySpec);          
             //retornar chave simetrica
             return plain;
         } catch (Exception ex) {
@@ -132,5 +140,11 @@ public class Register {
         }
         
     } 
+    
+    public static void main(String[] args) {
+        Register user = new Register("123", "1234qwer");
+        PrivateKey privK = readPrivateKey(user.name, user.passwd);
+        System.out.println(readSimetricKey_Pub(user.name, privK));
+    }
     
 }

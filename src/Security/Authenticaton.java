@@ -20,6 +20,9 @@ public class Authenticaton {
             PrivateKey keyPriv = Security.Register.readPrivateKey(user, passwd);
             PublicKey keyPub = Security.Register.readPublicKey(user);
             byte[] SimKey = Security.Register.readSimetricKey_Pub(user, keyPriv);
+            System.out.println("Private Key: " + keyPriv);
+            System.out.println("Public Key: " + keyPub);
+            System.out.println("Simetric Key: " + SimKey);
         }else{
             System.out.println("User does not exist");
         }
