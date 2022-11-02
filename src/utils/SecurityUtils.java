@@ -614,6 +614,4 @@ public class SecurityUtils {
     private static final long serialVersionUID = 202208301028L;
     //:::::::::::::::::::::::::::  Copyright(c) M@nso  2022  :::::::::::::::::::
     ///////////////////////////////////////////////////////////////////////////
-    
-    
 }
