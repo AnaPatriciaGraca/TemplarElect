@@ -15,6 +15,7 @@
 //////////////////////////////////////////////////////////////////////////////
 package blockchain.utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -456,6 +457,20 @@ public final class MerkleTree<T> implements Serializable {
             return bos.toByteArray();
         } catch (Exception e) { // not seralizable
             return new byte[]{0};
+        }
+    }
+    
+    /**
+     * converts an byte array to byte Array
+     *
+     * @param data
+     * @return byte array
+     */
+    public static Object bytesToObject(byte[] data) {
+        try ( ByteArrayInputStream bin = new ByteArrayInputStream(data);  ObjectInputStream in = new ObjectInputStream(bin)) {
+            return in.readObject();
+        } catch (Exception e) { // not seralizable
+            return null;
         }
     }
 

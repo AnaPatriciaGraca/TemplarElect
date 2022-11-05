@@ -16,6 +16,8 @@
 package blockchain.utils;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created on 22/08/2022, 09:23:49
@@ -32,26 +34,48 @@ public class Block implements Serializable {
     int nonce;           // proof of work 
     String currentHash;  // Hash of block
 
-    public Block(String previousHash, String data, int nonce) {
+    public Block(String previousHash, String data, int nonce) throws Exception {
         this.previousHash = previousHash;
         this.data = data;
         this.nonce = nonce;
         this.currentHash = calculateHash();
     }
 
-    public String calculateHash() {
+    public String getPreviousHash() {
+        return previousHash;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public int getNonce() {
+        return nonce;
+    }
+
+    public String getCurrentHash() {
+        return currentHash;
+    }
+
+    
+    
+    public String calculateHash() throws Exception {
         return Hash.getHash(nonce + previousHash + data);
     }
 
     public String toString() {
-        return (isValid() ? "OK\t" : "ERROR\t")
-                + String.format("%8s", previousHash) + " <-[" + 
-                   String.format("%-10s", data) +  String.format(" %7d ] = ", nonce) + 
-                String.format("%8s",currentHash);
-
+        try {
+            return (isValid() ? "OK\t" : "ERROR\t")
+                    + String.format("%8s", previousHash) + " <-[" +
+                    String.format("%-10s", data) +  String.format(" %7d ] = ", nonce) +
+                    String.format("%8s",currentHash);
+        } catch (Exception ex) {
+            Logger.getLogger(Block.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
-    public boolean isValid() {
+    public boolean isValid() throws Exception {
         return currentHash.equals(calculateHash());
     }
 

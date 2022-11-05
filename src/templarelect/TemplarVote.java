@@ -5,15 +5,40 @@
 package templarelect;
 
 import java.io.Serializable;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.util.Base64;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import templarElect.User;
+import utils.SecurityUtils;
 
 /**
  *
  * @author AnaGraca
  */
 public class TemplarVote implements Serializable{
-    private String voter;
-    private String congressperson;
+    private String voter;           //public key
+    private String congressperson;  //public key
+    String signature;               //signature of the voter
 
+    public void sign(PrivateKey priv) throws Exception{
+        byte[]data = (voter + congressperson).getBytes();
+        byte[] s = SecurityUtils.sign(data, priv);
+        signature = Base64.getEncoder().encodeToString(s);
+    }
+    
+    public boolean validateSignature() throws Exception{
+        //dados da transacao
+        byte[]data = (voter + congressperson).getBytes();
+        //dados da assinatura
+        byte [] sign = Base64.getDecoder().decode(signature);
+        //chave publica do from
+        byte [] pk = Base64.getDecoder().decode(voter);
+        PublicKey pubKey = SecurityUtils. getPublicKey(pk);
+        return SecurityUtils.verifySign(data, sign, pubKey);
+    }
+    
     public TemplarVote(String voter, String congressperson) {
         this.voter = voter;
         this.congressperson = congressperson;
@@ -34,10 +59,41 @@ public class TemplarVote implements Serializable{
     public void setCongressperson(String congressperson) {
         this.congressperson = congressperson;
     }
+
+    public String getSignature() {
+        return signature;
+    }
     
     @Override
     public String toString(){
-        return "Vote from " + voter + " confirmed.";
+        try {
+            User uVoter = User.getFromPublicKey(voter);
+            User uCongressPerson = User.getFromPublicKey(congressperson);
+            String txtVoter = uVoter!= null ? uVoter.getName() : "Unknown";
+            String txtCongressPerson = uCongressPerson!= null ? uCongressPerson.getName(): "Unknown";
+            return String.format("%-10s voted on %s", txtVoter, txtCongressPerson);
+        } catch (Exception ex) {
+            Logger.getLogger(TemplarVote.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "ERROR TO STRING";
+    }
+
+        /**
+     * convert this to base64
+     * @return 
+     */
+    public String toBase64(){
+        byte[] data = blockchain.utils.MerkleTree.objectToBytes(this);
+        return Base64.getEncoder().encodeToString(data);  
+    }
+    /**
+     * build an object with base64
+     * @param b64
+     * @return 
+     */
+    public static TemplarVote fromBase64(String b64){
+        byte [] data = Base64.getDecoder().decode(b64);
+        return (TemplarVote)blockchain.utils.MerkleTree.bytesToObject(data);
     }
 }
     

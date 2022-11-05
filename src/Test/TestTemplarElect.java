@@ -17,7 +17,7 @@ import templarelect.TemplarVote;
  * Class to test the class "TemplarElect"
  */
 public class TestTemplarElect {
-    public static void main(String[] args) throws TemplarElectException, IOException {
+    public static void main(String[] args) throws TemplarElectException, IOException, Exception {
         String fileName = "TemplarElect.obj";
         
         try{
