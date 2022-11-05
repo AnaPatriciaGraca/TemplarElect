@@ -32,6 +32,10 @@ public class BlockChain implements Serializable {
 
     ArrayList<Block> chain = new ArrayList<>();
 
+    public ArrayList<Block> getChain() {
+        return chain;
+    }
+    
     public String getLastBlockHash() {
         if (chain.isEmpty()) {
             return String.format("%08d", 0);
@@ -39,7 +43,7 @@ public class BlockChain implements Serializable {
         return chain.get(chain.size() - 1).currentHash;
     }
 
-    public void add(String data, int dificulty) {
+    public void add(String data, int dificulty) throws Exception {
         //hash of previous block
         String prevHash = getLastBlockHash();
         //mining block
@@ -74,7 +78,7 @@ public class BlockChain implements Serializable {
         }
     }
 
-    public boolean isValid() {
+    public boolean isValid() throws Exception {
         //Validate blocks
         for (Block block : chain) {
             if (!block.isValid()) {

@@ -15,12 +15,8 @@
 //////////////////////////////////////////////////////////////////////////////
 package blockchain.utils;
 
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import utils.SecurityUtils;
 
 /**
  * Created on 28/09/2022, 11:02:33
@@ -35,21 +31,9 @@ public class Hash {
     }
 
     //metodo alterado para calcular o Hash com SHA-256
-    public static String getHash(String data) {
-//        MessageDigest dig;
-//        try {
-//            dig = MessageDigest.getInstance("SHA-128");
-//            byte[] hash = dig.digest(data.getBytes("UTF-8"));
-//            String encoded = Base64.getEncoder().encodeToString(hash);
-//            return encoded;
-//        } catch (NoSuchAlgorithmException ex) {
-//            Logger.getLogger(Hash.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        } catch (UnsupportedEncodingException ex) {
-//            Logger.getLogger(Hash.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-        return toHexString(data.hashCode());
+    public static String getHash(String data) throws Exception {
+        byte [] h = SecurityUtils.calculateHash(data.getBytes(), "SHA-256");
+        return Base64.getEncoder().encodeToString(h);
         
     }
 

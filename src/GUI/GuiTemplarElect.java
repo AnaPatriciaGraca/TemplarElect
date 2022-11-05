@@ -5,12 +5,7 @@
 package GUI;
 
 import Test.TemplarElectException;
-import blockchain.utils.Hash;
-import blockchain.utils.Miner;
-import utils.SecurityUtils;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import templarelect.TemplarElect;
@@ -23,8 +18,8 @@ import templarelect.TemplarVote;
 public class GuiTemplarElect extends javax.swing.JFrame {
 
     String fileName = "TemplarElect.obj";
-    templarelect.TemplarElect election = new TemplarElect();
-    String prevHash;
+    TemplarElect election;
+    
     
     /**
      * Creates new form GuiTemplarElect
@@ -33,7 +28,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         initComponents();
         try {
             election = TemplarElect.load(fileName);
-            txtHash.setText(prevHash);
+            
         } catch (IOException ex) {
             Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -61,8 +56,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtCongressPerson = new javax.swing.JTextArea();
-        txtHash = new javax.swing.JTextArea();
-        btMineBlock = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -96,19 +89,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
         jScrollPane6.setViewportView(jScrollPane4);
 
-        txtHash.setColumns(20);
-        txtHash.setLineWrap(true);
-        txtHash.setRows(5);
-        txtHash.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Congress Man", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 12))); // NOI18N
-
-        btMineBlock.setText("Mine Block");
-        btMineBlock.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        btMineBlock.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btMineBlockActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,11 +100,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
                     .addComponent(jScrollPane5)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtHash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btMineBlock, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                 .addContainerGap())
@@ -138,18 +114,11 @@ public class GuiTemplarElect extends javax.swing.JFrame {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtHash, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btMineBlock)
-                        .addGap(30, 30, 30)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(btVote))
                     .addComponent(jScrollPane3))
                 .addGap(26, 26, 26))
         );
-
-        txtHash.getAccessibleContext().setAccessibleName("Hash");
-        txtHash.getAccessibleContext().setAccessibleDescription("Hash");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -164,18 +133,11 @@ public class GuiTemplarElect extends javax.swing.JFrame {
             ex.show();
         } catch (IOException ex) {
             Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_btVoteActionPerformed
-
-    private void btMineBlockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMineBlockActionPerformed
-        System.out.println(prevHash);
-        String data = txtHash.getText() + txtVoter.getText() + txtVoter.getText();
-        int nonce = Miner.getNonce(data, 1);
-        txtHash.setText(Hash.getHash(nonce + data));
-        prevHash = txtHash.getText();
-        System.out.println("");
-    }//GEN-LAST:event_btMineBlockActionPerformed
 
     /**
      * @param args the command line arguments
@@ -216,7 +178,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btMineBlock;
     private javax.swing.JButton btVote;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -224,7 +185,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTextArea txtCongressPerson;
     private javax.swing.JTextArea txtElection;
-    private javax.swing.JTextArea txtHash;
     private javax.swing.JTextArea txtVoter;
     // End of variables declaration//GEN-END:variables
 }
