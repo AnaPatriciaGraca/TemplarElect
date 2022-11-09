@@ -22,15 +22,14 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     String fileName = "TemplarElect.obj";
     TemplarElect election;
     
-    
     /**
      * Creates new form GuiTemplarElect
      */
     public GuiTemplarElect() {
         initComponents();
         try {
-//            election = TemplarElect.load(fileName);
-              election = new TemplarElect();
+            election = TemplarElect.load(fileName);
+            //election = new TemplarElect();
             
         } catch (IOException ex) {
             Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
@@ -121,7 +120,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                         .addComponent(btVote))
                     .addComponent(jScrollPane3))
                 .addGap(26, 26, 26))
@@ -132,8 +131,14 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
     private void btVoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoteActionPerformed
         TemplarVote v = new TemplarVote(txtVoter.getText(), txtCongressPerson.getText());
+        System.out.println(v.getVoter() + v.getCongressperson());
+        boolean hasVoted = election.hasVoted(v.getVoter());
+        System.out.println(hasVoted);
         try {
-            election.add(v);
+            if (!hasVoted) {
+                election.add(v);
+                System.out.println("vote added");
+            }
             txtElection.setText(election.toString());
             election.save(fileName);
         } catch (TemplarElectException ex) {

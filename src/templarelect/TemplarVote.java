@@ -7,10 +7,10 @@ package templarelect;
 import java.io.Serializable;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import templarElect.User;
 import utils.SecurityUtils;
 
 /**
@@ -25,6 +25,8 @@ public class TemplarVote implements Serializable{
     private String voter;           //public key
     private String congressperson;  //public key
     String signature;               //signature of the voter
+    
+    
 
     public void sign(PrivateKey priv) throws Exception{
         byte[]data = (voter + congressperson).getBytes();
@@ -75,7 +77,7 @@ public class TemplarVote implements Serializable{
 //            User uCongressPerson = User.getFromPublicKey(congressperson);
 //            String txtVoter = uVoter!= null ? uVoter.getName() : "Unknown";
 //            String txtCongressPerson = uCongressPerson!= null ? uCongressPerson.getName(): "Unknown";
-            return String.format("%s voted on %s", voter, congressperson);
+            return String.format("\n%s has voted!", voter);
         } catch (Exception ex) {
             Logger.getLogger(TemplarVote.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -77,7 +77,7 @@ public class TemplarElect implements Serializable{
         return voteList.size();
     }
     
-    // reutrn the total number of votes for the congress person
+    // return the total number of votes for the congress person
     public int totalVotes(String congressperson){
         int total = 0;
         List<TemplarVote> voteList = getVoteList();
@@ -116,18 +116,31 @@ public class TemplarElect implements Serializable{
         return txt.toString();
     }
     
-    //retorna lista de utilizadores
+    //return voters list
     public List<String> getVoters(){
         ArrayList<String> voters = new ArrayList<>();
         List<TemplarVote> voteList = getVoteList();
         for (TemplarVote templarVote : voteList) {
             if (!voters.contains(templarVote.getVoter())) {
-                voters.add(String.format("Voter: %s", templarVote.getVoter()));
+                voters.add(String.format("%s", templarVote.getVoter()));
             }
         }
         return voters;
     }
     
+    //verify if user has voted before
+    public boolean hasVoted(String user){
+        List<String> voters = new  ArrayList<>();
+        voters = getVoters();
+        for (String voter : voters) {
+            if (user.equals(voter)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public static int DIFICULTY = 1;
+
     
 }
