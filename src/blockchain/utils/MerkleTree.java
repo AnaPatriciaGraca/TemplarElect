@@ -40,6 +40,8 @@ import java.util.List;
  */
 public final class MerkleTree<T> implements Serializable {
 
+    private static final long serialVersionUID = 8120649064977112190L;
+
     // merkle tree hashs
     List<List<byte[]>> hashTree;
     // elements of tree
@@ -474,8 +476,5 @@ public final class MerkleTree<T> implements Serializable {
         }
     }
 
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    private static final long serialVersionUID = 202209131142L;
-    //:::::::::::::::::::::::::::  Copyright(c) M@nso  2022  :::::::::::::::::::
-    ///////////////////////////////////////////////////////////////////////////
+    
 }

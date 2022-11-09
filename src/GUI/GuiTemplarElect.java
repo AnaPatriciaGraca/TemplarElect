@@ -17,6 +17,8 @@ import templarelect.TemplarVote;
  */
 public class GuiTemplarElect extends javax.swing.JFrame {
 
+    private static final long serialVersionUID = 4891176181486442877L;
+
     String fileName = "TemplarElect.obj";
     TemplarElect election;
     
@@ -27,15 +29,20 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     public GuiTemplarElect() {
         initComponents();
         try {
-            election = TemplarElect.load(fileName);
+//            election = TemplarElect.load(fileName);
+              election = new TemplarElect();
             
         } catch (IOException ex) {
             Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
         }
         //System.out.println(election.toString());
         txtElection.setText(election.toString());
+        setSize(800,600);
+        setLocationRelativeTo(null);
         
     }
 

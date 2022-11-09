@@ -18,6 +18,10 @@ import utils.SecurityUtils;
  * @author AnaGraca
  */
 public class TemplarVote implements Serializable{
+
+    private static final long serialVersionUID = 4904322526951122916L;
+
+
     private String voter;           //public key
     private String congressperson;  //public key
     String signature;               //signature of the voter
@@ -67,11 +71,11 @@ public class TemplarVote implements Serializable{
     @Override
     public String toString(){
         try {
-            User uVoter = User.getFromPublicKey(voter);
-            User uCongressPerson = User.getFromPublicKey(congressperson);
-            String txtVoter = uVoter!= null ? uVoter.getName() : "Unknown";
-            String txtCongressPerson = uCongressPerson!= null ? uCongressPerson.getName(): "Unknown";
-            return String.format("%-10s voted on %s", txtVoter, txtCongressPerson);
+//            User uVoter = User.getFromPublicKey(voter);
+//            User uCongressPerson = User.getFromPublicKey(congressperson);
+//            String txtVoter = uVoter!= null ? uVoter.getName() : "Unknown";
+//            String txtCongressPerson = uCongressPerson!= null ? uCongressPerson.getName(): "Unknown";
+            return String.format("%s voted on %s", voter, congressperson);
         } catch (Exception ex) {
             Logger.getLogger(TemplarVote.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -95,6 +99,7 @@ public class TemplarVote implements Serializable{
         byte [] data = Base64.getDecoder().decode(b64);
         return (TemplarVote)blockchain.utils.MerkleTree.bytesToObject(data);
     }
+
 }
     
 

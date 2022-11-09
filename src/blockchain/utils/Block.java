@@ -29,6 +29,8 @@ import java.util.logging.Logger;
  */
 public class Block implements Serializable {
 
+    private static final long serialVersionUID = -2260996302652781128L;
+
     String previousHash; // link to previous block
     String data;         // data in the block
     int nonce;           // proof of work 
@@ -79,9 +81,5 @@ public class Block implements Serializable {
         return currentHash.equals(calculateHash());
     }
 
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    private static final long serialVersionUID = 202208220923L;
-    //:::::::::::::::::::::::::::  Copyright(c) M@nso  2022  :::::::::::::::::::
-    ///////////////////////////////////////////////////////////////////////////
 
 }

@@ -15,6 +15,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,14 +24,18 @@ import java.util.List;
  */
 public class TemplarElect implements Serializable{
 
+    private static final long serialVersionUID = 5974895779296767151L;
+
+
     private final BlockChain voteList;
 
     public TemplarElect() throws Exception {
         voteList = new BlockChain();
-        //TemplarVote genesis = new TemplarVote("Master", "Tony");
-        //voteList.add(genesis.toBase64(), DIFICULTY);
+        TemplarVote genesis = new TemplarVote("System", "Master");
+        voteList.add(genesis.toBase64(), DIFICULTY);
     }
     
+    //transformar a blockchain numa lista de transações
     public List<TemplarVote> getVoteList(){
         //return voteList;
         List<TemplarVote> lst = new ArrayList<>();
@@ -100,8 +106,7 @@ public class TemplarElect implements Serializable{
     }
     
     @Override
-    //method only ti print on the screen
-    //posteriormente é necessário alterar este método para StringBuilder em vez do StringBuffer (por causa do processamento paralelo)
+    //method only to print on the screen
     public String toString() {
         StringBuilder txt = new StringBuilder();
         List<TemplarVote> voteList = getVoteList();
@@ -109,6 +114,18 @@ public class TemplarElect implements Serializable{
             txt.append(vote.toString()).append("\n");
         }
         return txt.toString();
+    }
+    
+    //retorna lista de utilizadores
+    public List<String> getVoters(){
+        ArrayList<String> voters = new ArrayList<>();
+        List<TemplarVote> voteList = getVoteList();
+        for (TemplarVote templarVote : voteList) {
+            if (!voters.contains(templarVote.getVoter())) {
+                voters.add(String.format("Voter: %s", templarVote.getVoter()));
+            }
+        }
+        return voters;
     }
     
     public static int DIFICULTY = 1;

@@ -30,6 +30,8 @@ import java.util.ArrayList;
  */
 public class BlockChain implements Serializable {
 
+    private static final long serialVersionUID = 2607355451049953806L;
+
     ArrayList<Block> chain = new ArrayList<>();
 
     public ArrayList<Block> getChain() {
@@ -95,8 +97,5 @@ public class BlockChain implements Serializable {
         return true;
     }
 
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    private static final long serialVersionUID = 202208221009L;
-    //:::::::::::::::::::::::::::  Copyright(c) M@nso  2022  :::::::::::::::::::
-    ///////////////////////////////////////////////////////////////////////////
+   
 }
