@@ -98,8 +98,8 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         UserData = new javax.swing.JTextPane();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        txtTotalVotes = new javax.swing.JTextArea();
+        txtTotalVotes = new javax.swing.JLabel();
+        btElectionTotals = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -120,9 +120,9 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         cbCongressPerson.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jScrollPane4.setViewportView(cbCongressPerson);
 
+        btVote.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btVote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btVote.setLabel("Add Vote");
-        btVote.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btVote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btVoteActionPerformed(evt);
@@ -142,9 +142,12 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         UserData.setEditable(false);
         jScrollPane2.setViewportView(UserData);
 
-        txtTotalVotes.setColumns(20);
-        txtTotalVotes.setRows(5);
-        jScrollPane7.setViewportView(txtTotalVotes);
+        btElectionTotals.setText("Election Totals");
+        btElectionTotals.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btElectionTotalsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,18 +155,19 @@ public class GuiTemplarElect extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtTotalVotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane7))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6)
+                    .addComponent(btElectionTotals, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,12 +188,13 @@ public class GuiTemplarElect extends javax.swing.JFrame {
                     .addComponent(jScrollPane3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane7))
-                .addContainerGap())
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtTotalVotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btElectionTotals, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         pack();
@@ -212,6 +217,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         try {
             if (!hasVoted) {
                 election.add(v);
+                JOptionPane.showMessageDialog(this, "Vote from  " + myUser.getName() + " added!");
             }else{
                 JOptionPane.showMessageDialog(this, "User " + myUser.getName() + " already voted!");
             }
@@ -227,6 +233,22 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btVoteActionPerformed
+
+    private void btElectionTotalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btElectionTotalsActionPerformed
+        int totals[] = new int[congressPersonList.size()];
+        String txt = "";
+        if (myUser.getName().equals("admin")) {
+            for (int i = 0; i < congressPersonList.size(); i++) {
+                totals[i] = election.totalVotes(congressPersonList.get(i));      
+            }
+            for (int i = 0; i < congressPersonList.size(); i++) {
+                txt += congressPersonList.get(i) + ":\t" + totals[i] + " votes\n";
+            }
+            JOptionPane.showMessageDialog(this, txt);
+        }else {
+            JOptionPane.showMessageDialog(this, "Only administrators can see this information");
+        }
+    }//GEN-LAST:event_btElectionTotalsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,6 +290,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextPane UserData;
+    private javax.swing.JButton btElectionTotals;
     private javax.swing.JButton btVote;
     private javax.swing.JComboBox<String> cbCongressPerson;
     private javax.swing.JLabel jLabel1;
@@ -278,10 +301,9 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea txtElection;
     private javax.swing.JTextArea txtSignature;
-    private javax.swing.JTextArea txtTotalVotes;
+    private javax.swing.JLabel txtTotalVotes;
     private javax.swing.JTextArea txtVoter;
     // End of variables declaration//GEN-END:variables
 }
