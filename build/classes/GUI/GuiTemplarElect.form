@@ -75,7 +75,7 @@
                   <Component id="txtTotalVotes" max="32767" attributes="0"/>
                   <Component id="btElectionTotals" pref="30" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="17" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
