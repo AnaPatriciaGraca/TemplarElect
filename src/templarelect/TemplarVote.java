@@ -23,7 +23,7 @@ public class TemplarVote implements Serializable{
 
 
     private String voter;           //public key
-    private String congressperson;  //public key
+    private String congressperson;  //string
     String signature;               //signature of the voter
     
     

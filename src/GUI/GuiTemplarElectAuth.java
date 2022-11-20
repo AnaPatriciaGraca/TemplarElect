@@ -221,6 +221,8 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
         try {
             User u = User.load(txtUser.getText(), new String(txtPass.getPassword()));
             JOptionPane.showMessageDialog(this, "Login Success!");
+            this.dispose();
+            new GuiTemplarElect(u).setVisible(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Incorrect User or Password");
         }

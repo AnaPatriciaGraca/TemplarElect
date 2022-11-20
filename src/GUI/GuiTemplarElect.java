@@ -6,8 +6,14 @@ package GUI;
 
 import Test.TemplarElectException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import templarElect.User;
 import templarelect.TemplarElect;
 import templarelect.TemplarVote;
 
@@ -19,30 +25,54 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 4891176181486442877L;
 
-    String fileName = "TemplarElect.obj";
+    public static String fileName = "TemplarElect.obj";
     TemplarElect election;
+    User myUser;
+    List<String> congressPersonList = Arrays.asList("Ronald Reagan", "George H. W. Bush",
+            "Bill Cliton", "George W. Bush", "Barack Obama", "Donald J. Trump", "Joe Biden");
     
     /**
      * Creates new form GuiTemplarElect
      */
-    public GuiTemplarElect() {
+    public GuiTemplarElect(User user) {
         initComponents();
+        
+
         try {
-            election = TemplarElect.load(fileName);
-            //election = new TemplarElect();
+            this.myUser = user;
             
+            election = TemplarElect.load(fileName);
         } catch (IOException ex) {
-            Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                election = new TemplarElect();
+            } catch (Exception ex1) {
+                JOptionPane.showMessageDialog(this, "Error creating a new Election");
+            }
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error openning the Election");
         }
-        //System.out.println(election.toString());
+  
+        //carrgar dados dos user
+        displayUser();
+        //carregar dados da eleição
         txtElection.setText(election.toString());
         setSize(800,600);
         setLocationRelativeTo(null);
         
+    }
+    
+    public void displayUser(){
+        String pubB64 = Base64.getEncoder().encodeToString(
+                myUser.getPubKey().getEncoded());
+        txtVoter.setText(pubB64);
+        //adicionar as pessoas do congresso à combo BOX
+        DefaultComboBoxModel model = new DefaultComboBoxModel();
+        model.addAll(congressPersonList);
+        cbCongressPerson.setModel(model);
+        UserData.setText("User: \n\t" + myUser.getName() + "\nFiles: \n" + 
+                "\t/users/" + myUser.getName() + ".pub\n" +
+                "\t/users/" + myUser.getName() + ".priv\n" +
+                "\t/users/" + myUser.getName() + ".sim\n");
     }
 
     /**
@@ -54,27 +84,25 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btVote = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtElection = new javax.swing.JTextArea();
         jScrollPane5 = new javax.swing.JScrollPane();
         txtVoter = new javax.swing.JTextArea();
-        jScrollPane6 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
-        txtCongressPerson = new javax.swing.JTextArea();
+        cbCongressPerson = new javax.swing.JComboBox<>();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        btVote = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtSignature = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        UserData = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
-        txtElectionResult = new javax.swing.JTextArea();
+        txtTotalVotes = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
-
-        btVote.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        btVote.setLabel("Add Vote");
-        btVote.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btVoteActionPerformed(evt);
-            }
-        });
 
         txtElection.setColumns(20);
         txtElection.setRows(5);
@@ -82,26 +110,41 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtElection.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Votos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 12))); // NOI18N
         jScrollPane3.setViewportView(txtElection);
 
+        txtVoter.setEditable(false);
         txtVoter.setColumns(20);
         txtVoter.setRows(5);
         txtVoter.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Voter", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 12))); // NOI18N
         txtVoter.setName(""); // NOI18N
         jScrollPane5.setViewportView(txtVoter);
 
-        txtCongressPerson.setColumns(20);
-        txtCongressPerson.setLineWrap(true);
-        txtCongressPerson.setRows(5);
-        txtCongressPerson.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Congress Man", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 12))); // NOI18N
-        jScrollPane4.setViewportView(txtCongressPerson);
-        txtCongressPerson.getAccessibleContext().setAccessibleDescription("");
+        cbCongressPerson.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jScrollPane4.setViewportView(cbCongressPerson);
 
-        jScrollPane6.setViewportView(jScrollPane4);
+        btVote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btVote.setLabel("Add Vote");
+        btVote.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        btVote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btVoteActionPerformed(evt);
+            }
+        });
+        jScrollPane6.setViewportView(btVote);
 
-        txtElectionResult.setColumns(20);
-        txtElectionResult.setRows(5);
-        txtElectionResult.setText(" ");
-        txtElectionResult.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Votos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 12))); // NOI18N
-        jScrollPane7.setViewportView(txtElectionResult);
+        txtSignature.setEditable(false);
+        txtSignature.setColumns(20);
+        txtSignature.setRows(5);
+        jScrollPane1.setViewportView(txtSignature);
+
+        jLabel1.setText("Congress Person");
+
+        jLabel2.setText("Signature");
+
+        UserData.setEditable(false);
+        jScrollPane2.setViewportView(UserData);
+
+        txtTotalVotes.setColumns(20);
+        txtTotalVotes.setRows(5);
+        jScrollPane7.setViewportView(txtTotalVotes);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -110,15 +153,17 @@ public class GuiTemplarElect extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btVote, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4)
+                    .addComponent(jScrollPane1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane7))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -126,31 +171,53 @@ public class GuiTemplarElect extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btVote)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btVoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoteActionPerformed
-        TemplarVote v = new TemplarVote(txtVoter.getText(), txtCongressPerson.getText());
-        System.out.println(v.getVoter() + v.getCongressperson());
-        //verify if the voter is trying to vote 2 times
+        String congPerson = (String) cbCongressPerson.getSelectedObjects()[0];
+        //criar voto
+        TemplarVote v = new TemplarVote(txtVoter.getText(), congPerson);
+        //assinar voto
+        try {
+            v.sign(myUser.getPrivKey());
+            txtSignature.setText(v.getSignature());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error signing the vote!");
+        }
+        
+        //Verificar se a pessoa já votou e está a tentar votar novamente
         boolean hasVoted = election.hasVoted(v.getVoter());
         try {
             if (!hasVoted) {
                 election.add(v);
+            }else{
+                JOptionPane.showMessageDialog(this, "User " + myUser.getName() + " already voted!");
             }
             txtElection.setText(election.toString());
             election.save(fileName);
+            txtTotalVotes.setText( "Total number of votes: "+ Integer.toString(election.totalVotes()-1));
         } catch (TemplarElectException ex) {
             ex.show();
         } catch (IOException ex) {
@@ -164,51 +231,57 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GuiTemplarElect().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(GuiTemplarElect.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new GuiTemplarElect().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextPane UserData;
     private javax.swing.JButton btVote;
+    private javax.swing.JComboBox<String> cbCongressPerson;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTextArea txtCongressPerson;
     private javax.swing.JTextArea txtElection;
-    private javax.swing.JTextArea txtElectionResult;
+    private javax.swing.JTextArea txtSignature;
+    private javax.swing.JTextArea txtTotalVotes;
     private javax.swing.JTextArea txtVoter;
     // End of variables declaration//GEN-END:variables
 }
