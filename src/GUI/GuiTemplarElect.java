@@ -62,6 +62,8 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtCongressPerson = new javax.swing.JTextArea();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        txtElectionResult = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
@@ -95,6 +97,12 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
         jScrollPane6.setViewportView(jScrollPane4);
 
+        txtElectionResult.setColumns(20);
+        txtElectionResult.setRows(5);
+        txtElectionResult.setText(" ");
+        txtElectionResult.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Votos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Cambria", 0, 12))); // NOI18N
+        jScrollPane7.setViewportView(txtElectionResult);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,22 +116,25 @@ public class GuiTemplarElect extends javax.swing.JFrame {
                         .addGap(0, 1, Short.MAX_VALUE)
                         .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3)
+                    .addComponent(jScrollPane5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
-                        .addComponent(btVote))
-                    .addComponent(jScrollPane3))
-                .addGap(26, 26, 26))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btVote)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
 
         pack();
@@ -132,12 +143,11 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private void btVoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btVoteActionPerformed
         TemplarVote v = new TemplarVote(txtVoter.getText(), txtCongressPerson.getText());
         System.out.println(v.getVoter() + v.getCongressperson());
+        //verify if the voter is trying to vote 2 times
         boolean hasVoted = election.hasVoted(v.getVoter());
-        System.out.println(hasVoted);
         try {
             if (!hasVoted) {
                 election.add(v);
-                System.out.println("vote added");
             }
             txtElection.setText(election.toString());
             election.save(fileName);
@@ -195,8 +205,10 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea txtCongressPerson;
     private javax.swing.JTextArea txtElection;
+    private javax.swing.JTextArea txtElectionResult;
     private javax.swing.JTextArea txtVoter;
     // End of variables declaration//GEN-END:variables
 }
