@@ -35,50 +35,50 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         PanelRegister = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         btRegister = new javax.swing.JButton();
         txtUserRegister = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         txtPassRegister = new javax.swing.JPasswordField();
-        jLabel7 = new javax.swing.JLabel();
         txtPassRegister2 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         PanelLogin = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         btLogin = new javax.swing.JButton();
         txtUser = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         UsersList = new javax.swing.JScrollPane();
         jListUsers = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
+        jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jTabbedPane1StateChanged(evt);
             }
         });
 
-        jLabel1.setText("User");
+        PanelRegister.setBackground(new java.awt.Color(255, 255, 255));
 
+        btRegister.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         btRegister.setText("Register");
+        btRegister.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRegisterActionPerformed(evt);
             }
         });
 
+        txtUserRegister.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "User", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
         txtUserRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserRegisterActionPerformed(evt);
             }
         });
 
-        jLabel6.setText("Password");
+        txtPassRegister.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Password", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
 
-        jLabel7.setText("Password Confirmation");
+        txtPassRegister2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Password Confirmation", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GUI/TemplarElectLogo Small.png"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -87,11 +87,8 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
         PanelRegister.setLayout(PanelRegisterLayout);
         PanelRegisterLayout.setHorizontalGroup(
             PanelRegisterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(txtUserRegister)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(txtPassRegister2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
             .addComponent(txtPassRegister)
             .addGroup(PanelRegisterLayout.createSequentialGroup()
@@ -104,18 +101,12 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
             .addGroup(PanelRegisterLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUserRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassRegister, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtUserRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtPassRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtPassRegister2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btRegister)
                 .addGap(14, 14, 14))
@@ -123,23 +114,25 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Register", PanelRegister);
 
-        jLabel2.setText("User");
+        PanelLogin.setBackground(new java.awt.Color(255, 255, 255));
 
+        btLogin.setFont(new java.awt.Font("Microsoft PhagsPa", 1, 12)); // NOI18N
         btLogin.setText("Login");
+        btLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         btLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btLoginActionPerformed(evt);
             }
         });
 
+        txtUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "User", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
             }
         });
 
-        jLabel8.setText("Password");
-
+        txtPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Password", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
         txtPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPassActionPerformed(evt);
@@ -153,35 +146,31 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
         PanelLogin.setLayout(PanelLoginLayout);
         PanelLoginLayout.setHorizontalGroup(
             PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 395, Short.MAX_VALUE)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(txtPass, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(txtUser)
+            .addComponent(txtPass)
+            .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         PanelLoginLayout.setVerticalGroup(
             PanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btLogin)
-                .addContainerGap())
+                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
 
         jTabbedPane1.addTab("Login", PanelLogin);
+
+        UsersList.setBackground(new java.awt.Color(255, 255, 255));
 
         jListUsers.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -318,13 +307,8 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
     private javax.swing.JScrollPane UsersList;
     private javax.swing.JButton btLogin;
     private javax.swing.JButton btRegister;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JList<String> jListUsers;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JPasswordField txtPass;
