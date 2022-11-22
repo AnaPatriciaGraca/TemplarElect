@@ -114,7 +114,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtElection.setColumns(20);
         txtElection.setRows(5);
         txtElection.setText(" ");
-        txtElection.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Votes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtElection.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
         jScrollPane3.setViewportView(txtElection);
 
         jScrollPane5.setBackground(new java.awt.Color(255, 255, 255));
@@ -123,14 +123,14 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtVoter.setBackground(new java.awt.Color(255, 255, 255));
         txtVoter.setColumns(20);
         txtVoter.setRows(5);
-        txtVoter.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "Voter", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtVoter.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Voter", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
         txtVoter.setName(""); // NOI18N
         jScrollPane5.setViewportView(txtVoter);
 
         jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
 
         cbCongressPerson.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbCongressPerson.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Congress Person", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        cbCongressPerson.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Congress Person", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
         jScrollPane4.setViewportView(cbCongressPerson);
 
         btVote.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -149,7 +149,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtSignature.setBackground(new java.awt.Color(255, 255, 255));
         txtSignature.setColumns(20);
         txtSignature.setRows(5);
-        txtSignature.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Signature", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtSignature.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Signature", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
         jScrollPane1.setViewportView(txtSignature);
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));

@@ -103,9 +103,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="Votes">
-                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder roundedCorners="true"/>
-                  </Border>
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Microsoft PhagsPa" size="12" style="1"/>
                 </TitledBorder>
               </Border>
@@ -134,9 +132,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="Voter">
-                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder roundedCorners="true"/>
-                  </Border>
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Microsoft PhagsPa" size="12" style="1"/>
                 </TitledBorder>
               </Border>
@@ -168,9 +164,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="Congress Person">
-                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
-                  </Border>
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Microsoft PhagsPa" size="12" style="1"/>
                 </TitledBorder>
               </Border>
@@ -227,9 +221,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="Signature">
-                  <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                    <LineBorder/>
-                  </Border>
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Microsoft PhagsPa" size="12" style="1"/>
                 </TitledBorder>
               </Border>
