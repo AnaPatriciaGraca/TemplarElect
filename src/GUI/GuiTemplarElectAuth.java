@@ -229,6 +229,7 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         try {
             User u = User.load(txtUser.getText(), new String(txtPass.getPassword()));
+            System.out.println(u.getName());
             JOptionPane.showMessageDialog(this, "Login Success!");
             this.dispose();
             new GuiTemplarElect(u).setVisible(true);

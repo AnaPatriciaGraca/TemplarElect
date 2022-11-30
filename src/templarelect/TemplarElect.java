@@ -141,6 +141,8 @@ public class TemplarElect implements Serializable{
     }
     
     public static int DIFICULTY = 1;
+    
+    
 
     
 }

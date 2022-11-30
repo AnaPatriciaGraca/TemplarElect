@@ -33,9 +33,9 @@ public class Miner {
             //calculate hash nonce + data
             String hash = Hash.getHash(nonce + data);
             //DEBUG ... DEBUG ... DEBUG ... DEBUG ... DEBUG ... 
-            System.out.println(nonce + " " + hash);
+            //System.out.println(nonce + " " + hash);
             //nounce is found
-            if (hash.endsWith(zeros)) {
+            if (hash.startsWith(zeros)) {
                 return nonce;
             }
             //next nonce

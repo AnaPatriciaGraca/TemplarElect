@@ -32,10 +32,9 @@ public class Hash {
 
     //metodo alterado para calcular o Hash com SHA-256
     public static String getHash(String data) throws Exception {
-        return Integer.toHexString(data.hashCode());
-        
-//        byte [] h = SecurityUtils.calculateHash(data.getBytes(), "SHA-256");
-//        return Base64.getEncoder().encodeToString(h);
+        //return Integer.toHexString(data.hashCode());
+        byte [] h = SecurityUtils.calculateHash(data.getBytes(), "SHA-256");
+        return Base64.getEncoder().encodeToString(h);
         
     }
 
