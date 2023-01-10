@@ -15,7 +15,10 @@
 //////////////////////////////////////////////////////////////////////////////
 package blockchain.utils;
 
+import static blockchain.miner.Miner.hashAlgorithm;
 import java.io.Serializable;
+import java.security.MessageDigest;
+import java.util.Base64;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -62,8 +65,7 @@ public class Block implements Serializable {
     
     
     public String calculateHash() throws Exception {
-        //return Hash.getHash(nonce + previousHash + data);
-        return "";
+        return Hash.getHash(nonce + previousHash + data);
     }
 
     public String toString() {

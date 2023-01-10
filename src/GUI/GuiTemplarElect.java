@@ -291,7 +291,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error signing the vote!");
         }
-        
         //Verificar se a pessoa já votou e está a tentar votar novamente
         boolean hasVoted = election.hasVoted(v.getVoter());
         try {
