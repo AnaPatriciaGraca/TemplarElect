@@ -88,23 +88,26 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private void initComponents() {
 
         btElectionTotals = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtElection = new javax.swing.JTextArea();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        txtVoter = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        cbCongressPerson = new javax.swing.JComboBox<>();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        btVote = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtSignature = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        UserData = new javax.swing.JTextPane();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
         txtTotalVotes = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
         lstBlockChain = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtSignature = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        cbCongressPerson = new javax.swing.JComboBox<>();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtVoter = new javax.swing.JTextArea();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        UserData = new javax.swing.JTextPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtElection = new javax.swing.JTextArea();
         jScrollPane7 = new javax.swing.JScrollPane();
         txtBlock = new javax.swing.JTextArea();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        btVote = new javax.swing.JButton();
 
         btElectionTotals.setText("Election Totals");
         btElectionTotals.addActionListener(new java.awt.event.ActionListener() {
@@ -115,14 +118,45 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
+        setMaximumSize(new java.awt.Dimension(800, 800));
+        setMinimumSize(new java.awt.Dimension(100, 100));
 
-        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(800, 800));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
-        txtElection.setColumns(20);
-        txtElection.setRows(5);
-        txtElection.setText(" ");
-        txtElection.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
-        jScrollPane3.setViewportView(txtElection);
+        jPanel3.setMaximumSize(new java.awt.Dimension(400, 500));
+
+        lstBlockChain.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        lstBlockChain.setMaximumSize(new java.awt.Dimension(11, 39));
+        lstBlockChain.setMinimumSize(new java.awt.Dimension(11, 39));
+        lstBlockChain.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                lstBlockChainValueChanged(evt);
+            }
+        });
+        jScrollPane8.setViewportView(lstBlockChain);
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtSignature.setEditable(false);
+        txtSignature.setBackground(new java.awt.Color(255, 255, 255));
+        txtSignature.setColumns(20);
+        txtSignature.setRows(5);
+        txtSignature.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Signature", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtSignature.setMaximumSize(new java.awt.Dimension(11, 39));
+        jScrollPane1.setViewportView(txtSignature);
+
+        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
+
+        cbCongressPerson.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCongressPerson.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Congress Person", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        cbCongressPerson.setMaximumSize(new java.awt.Dimension(11, 39));
+        cbCongressPerson.setMinimumSize(new java.awt.Dimension(11, 39));
+        jScrollPane4.setViewportView(cbCongressPerson);
 
         jScrollPane5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -131,14 +165,62 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtVoter.setColumns(20);
         txtVoter.setRows(5);
         txtVoter.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Voter", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtVoter.setMaximumSize(new java.awt.Dimension(11, 39));
         txtVoter.setName(""); // NOI18N
+        txtVoter.setPreferredSize(new java.awt.Dimension(230, 100));
         jScrollPane5.setViewportView(txtVoter);
 
-        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(txtTotalVotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jScrollPane8)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(txtTotalVotes, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
-        cbCongressPerson.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbCongressPerson.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Congress Person", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
-        jScrollPane4.setViewportView(cbCongressPerson);
+        jPanel1.add(jPanel3);
+
+        jPanel4.setMaximumSize(new java.awt.Dimension(400, 500));
+
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+
+        UserData.setEditable(false);
+        UserData.setBackground(new java.awt.Color(255, 255, 255));
+        UserData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jScrollPane2.setViewportView(UserData);
+
+        jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
+
+        txtElection.setColumns(20);
+        txtElection.setRows(5);
+        txtElection.setText(" ");
+        txtElection.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtElection.setMaximumSize(new java.awt.Dimension(2147483647, 100));
+        txtElection.setPreferredSize(new java.awt.Dimension(230, 100));
+        jScrollPane3.setViewportView(txtElection);
+
+        txtBlock.setColumns(20);
+        txtBlock.setRows(5);
+        jScrollPane7.setViewportView(txtBlock);
 
         btVote.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         btVote.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -150,80 +232,42 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         });
         jScrollPane6.setViewportView(btVote);
 
-        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3)
+            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane6)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
-        txtSignature.setEditable(false);
-        txtSignature.setBackground(new java.awt.Color(255, 255, 255));
-        txtSignature.setColumns(20);
-        txtSignature.setRows(5);
-        txtSignature.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Signature", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
-        jScrollPane1.setViewportView(txtSignature);
-
-        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
-
-        UserData.setEditable(false);
-        UserData.setBackground(new java.awt.Color(255, 255, 255));
-        UserData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jScrollPane2.setViewportView(UserData);
-
-        lstBlockChain.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane8.setViewportView(lstBlockChain);
-
-        txtBlock.setColumns(20);
-        txtBlock.setRows(5);
-        jScrollPane7.setViewportView(txtBlock);
+        jPanel1.add(jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtTotalVotes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(443, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTotalVotes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -285,6 +329,13 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btElectionTotalsActionPerformed
 
+    private void lstBlockChainValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_lstBlockChainValueChanged
+        if( lstBlockChain.getSelectedIndex() >=0){
+            Block b = (Block) lstBlockChain.getSelectedValues()[0];
+            txtBlock.setText(b.getFullInfo());
+        }       
+    }//GEN-LAST:event_lstBlockChainValueChanged
+
     /**
      * @param args the command line arguments
      */
@@ -328,6 +379,9 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private javax.swing.JButton btElectionTotals;
     private javax.swing.JButton btVote;
     private javax.swing.JComboBox<String> cbCongressPerson;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
