@@ -10,35 +10,24 @@
 //::     This software was build with the purpose of investigate and         ::
 //::     learning.                                                           ::
 //::                                                                         ::
-//::                                                               (c)2022   ::
+//::                                                               (c)2021   ::
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //////////////////////////////////////////////////////////////////////////////
-package blockchain.utils;
-
-import java.util.Base64;
+package blockchain.miner;
 
 /**
- * Created on 28/09/2022, 11:02:33
+ * Created on 16/11/2021, 18:01:08
  *
  * @author IPT - computer
- * @version 1.0
  */
-public class Hash {
+public interface MiningListener {
 
-    public static String toHexString(int n) {
-        return Integer.toHexString(n).toUpperCase();
-    }
+    public void onStartMining(String message, int zeros);
+    
+     public void onStopMining(int nonce);
 
-    //metodo alterado para calcular o Hash com SHA-256
-    public static String getHash(String data) throws Exception {
-        //return Integer.toHexString(data.hashCode());
-        byte [] h = SecurityUtils.calculateHash(data.getBytes(), "SHA-256");
-        return Base64.getEncoder().encodeToString(h);
-        
-    }
+    public void onMining(int number);
 
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    private static final long serialVersionUID = 202209281102L;
-    //:::::::::::::::::::::::::::  Copyright(c) M@nso  2022  :::::::::::::::::::
-    ///////////////////////////////////////////////////////////////////////////
+    public void onNounceFound(int nonce);
+
 }

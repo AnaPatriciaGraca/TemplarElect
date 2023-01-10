@@ -10,35 +10,25 @@
 //::     This software was build with the purpose of investigate and         ::
 //::     learning.                                                           ::
 //::                                                                         ::
-//::                                                               (c)2022   ::
+//::                                                               (c)2021   ::
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 //////////////////////////////////////////////////////////////////////////////
-package blockchain.utils;
+package blockchain.p2p.miner;
 
-import java.util.Base64;
+import blockchain.miner.MiningListener;
 
 /**
- * Created on 28/09/2022, 11:02:33
+ * Created on 16/11/2021, 18:01:08
  *
  * @author IPT - computer
- * @version 1.0
  */
-public class Hash {
+public interface RemoteMiningListenerP2P extends MiningListener {
 
-    public static String toHexString(int n) {
-        return Integer.toHexString(n).toUpperCase();
-    }
+    public void onStart(RemoteMinerP2P rm);
 
-    //metodo alterado para calcular o Hash com SHA-256
-    public static String getHash(String data) throws Exception {
-        //return Integer.toHexString(data.hashCode());
-        byte [] h = SecurityUtils.calculateHash(data.getBytes(), "SHA-256");
-        return Base64.getEncoder().encodeToString(h);
-        
-    }
-
-    //::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-    private static final long serialVersionUID = 202209281102L;
-    //:::::::::::::::::::::::::::  Copyright(c) M@nso  2022  :::::::::::::::::::
-    ///////////////////////////////////////////////////////////////////////////
+    public void onAddNode(IminerRemoteP2P rm);
+    
+    public void onException(String title, Exception ex);
+    public void onMessage(String title, String message);
+    
 }

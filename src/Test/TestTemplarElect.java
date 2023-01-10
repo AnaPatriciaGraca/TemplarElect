@@ -33,7 +33,7 @@ public class TestTemplarElect {
             //test adding a vote to the elections
             //election.add(new TemplarVote("Pedro", "Antonio"));
             //election.add(new TemplarVote("Ana", "Antonio"));
-            election.add(new TemplarVote("Miguel", "Antonio"));
+            //election.add(new TemplarVote("Miguel", "Antonio"));
             
             //save file with the votes
             election.save(fileName);

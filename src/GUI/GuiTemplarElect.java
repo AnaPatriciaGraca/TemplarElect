@@ -5,8 +5,10 @@
 package GUI;
 
 import Test.TemplarElectException;
+import blockchain.p2p.miner.IminerRemoteP2P;
 import blockchain.utils.Block;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -15,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import myUtils.RMI;
 import templarElect.User;
 import templarelect.TemplarElect;
 import templarelect.TemplarVote;
@@ -28,6 +31,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private static final long serialVersionUID = 4891176181486442877L;
 
     public static String fileName = "TemplarElectChain.obj";
+    IminerRemoteP2P miner;
     TemplarElect election;
     User myUser;
     List<String> congressPersonList = Arrays.asList("Ronald Reagan", "George H. W. Bush",
@@ -36,11 +40,12 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     /**
      * Creates new form GuiTemplarElect
      */
-    public GuiTemplarElect(User user) {
+    public GuiTemplarElect(User user, IminerRemoteP2P Mminer) {
         initComponents();
 
         try {
             this.myUser = user;
+            this.miner = Mminer;
             election = TemplarElect.load(fileName);
             DefaultListModel model = new DefaultListModel();
             model.addAll(election.getBlockChain().getChain());
@@ -289,7 +294,18 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         boolean hasVoted = election.hasVoted(v.getVoter());
         try {
             if (!hasVoted) {
-                election.add(v);
+                new Thread(()->{
+                    int nonce;
+                    try {
+                        nonce = miner.mine(v.toString(), 4);
+                        election.add(v, nonce);
+                    } catch (RemoteException ex) {
+                        Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (Exception ex) {
+                        Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }).start();
+                
                 //nao atualiza porque fica a calcular o hash
                 JOptionPane.showMessageDialog(this, "Vote from  " + myUser.getName() + " added!");
             }else{
@@ -303,8 +319,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
             txtBlock.setText(b.getFullInfo());
             txtElection.setText(election.toString());
             
-        } catch (TemplarElectException ex) {
-            ex.show();
         } catch (IOException ex) {
             Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {

@@ -25,7 +25,7 @@ import java.util.logging.Logger;
 public class TemplarElect implements Serializable{
 
     private static final long serialVersionUID = 5974895779296767151L;
-
+     public static int DIFICULTY = 2;
 
     private final BlockChain voteList;
 
@@ -36,7 +36,7 @@ public class TemplarElect implements Serializable{
     public TemplarElect() throws Exception {
         voteList = new BlockChain();
         TemplarVote genesis = new TemplarVote("System", "Master");
-        voteList.add(genesis.toBase64(), DIFICULTY);
+        voteList.add(genesis.toBase64(), DIFICULTY, 0000);
     }
     
     //transformar a blockchain numa lista de transações
@@ -67,9 +67,9 @@ public class TemplarElect implements Serializable{
     }
     
     // method to add the votes on the election if the vote is valid
-    public void add(TemplarVote v) throws TemplarElectException, Exception{
+    public void add(TemplarVote v, int nonce) throws TemplarElectException, Exception{
         if (isValid(v)) {
-            voteList.add(v.toBase64(),DIFICULTY);
+            voteList.add(v.toBase64(),DIFICULTY, nonce);
         } else {
             throw new Exception("Transaction not valid");
         }
@@ -144,7 +144,7 @@ public class TemplarElect implements Serializable{
         return false;
     }
     
-    public static int DIFICULTY = 1;
+   
     
     
 

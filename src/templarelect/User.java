@@ -30,7 +30,7 @@ import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
-import utils.SecurityUtils;
+import blockchain.utils.SecurityUtils;
 
 /**
  * Created on 28/10/2022, 15:37:44
@@ -71,6 +71,7 @@ public class User {
     public Key getKey() {
         return key;
     }
+    
 
     /**
      * Registar um utilizador

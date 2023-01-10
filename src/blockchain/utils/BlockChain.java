@@ -15,12 +15,17 @@
 //////////////////////////////////////////////////////////////////////////////
 package blockchain.utils;
 
+import blockchain.miner.Miner;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import blockchain.p2p.miner.IminerRemoteP2P;
+import java.awt.Color;
+import myUtils.GuiUtils;
+
 
 /**
  * Created on 22/08/2022, 10:09:17
@@ -31,9 +36,10 @@ import java.util.ArrayList;
 public class BlockChain implements Serializable {
 
     private static final long serialVersionUID = 2607355451049953806L;
-
+    IminerRemoteP2P miner;
+    
     ArrayList<Block> chain = new ArrayList<>();
-
+    
     public ArrayList<Block> getChain() {
         return chain;
     }
@@ -45,14 +51,15 @@ public class BlockChain implements Serializable {
         return chain.get(chain.size() - 1).currentHash;
     }
 
-    public void add(String data, int dificulty) throws Exception {
+    public void add(String data, int dificulty, int nonce) throws Exception {
         //hash of previous block
         String prevHash = getLastBlockHash();
         //mining block
-        int nonce = Miner.getNonce(prevHash + data, dificulty);
+        //int nonce = n.getNonce(prevHash + data, dificulty);
         //build new block
         Block newBlock = new Block(prevHash, data, nonce);
         chain.add(newBlock);
+        
     }
 
     public Block get(int index) {
@@ -95,6 +102,15 @@ public class BlockChain implements Serializable {
             }
         }
         return true;
+    }
+    
+//    public static void main(String[] args) throws Exception {
+//        BlockChain b = new BlockChain();
+//        b.add("data", 5);
+//    }
+
+    private void onException(String mining, Exception ex) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
    

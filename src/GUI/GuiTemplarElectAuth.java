@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import blockchain.p2p.miner.IminerRemoteP2P;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.Arrays;
@@ -17,11 +18,14 @@ import templarElect.User;
  */
 public class GuiTemplarElectAuth extends javax.swing.JFrame {
 
+    IminerRemoteP2P miner;
     /**
      * Creates new form GuiTemplarElectAuth
      */
-    public GuiTemplarElectAuth() {
+    public GuiTemplarElectAuth(IminerRemoteP2P Myminer) {
         initComponents();
+        
+        this.miner = Myminer;
     }
 
     /**
@@ -231,8 +235,9 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
             User u = User.load(txtUser.getText(), new String(txtPass.getPassword()));
             System.out.println(u.getName());
             JOptionPane.showMessageDialog(this, "Login Success!");
+            new GuiTemplarElect(u, miner).setVisible(true);
             this.dispose();
-            new GuiTemplarElect(u).setVisible(true);
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Incorrect User or Password");
         }
@@ -267,40 +272,7 @@ public class GuiTemplarElectAuth extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListUsersValueChanged
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElectAuth.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElectAuth.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElectAuth.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GuiTemplarElectAuth.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GuiTemplarElectAuth().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelLogin;

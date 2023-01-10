@@ -16,7 +16,7 @@ import java.security.spec.EncodedKeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import utils.SecurityUtils;
+import blockchain.utils.SecurityUtils;
 
 /**
  *
