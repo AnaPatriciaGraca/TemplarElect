@@ -294,17 +294,15 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         boolean hasVoted = election.hasVoted(v.getVoter());
         try {
             if (!hasVoted) {
-                new Thread(()->{
-                    int nonce;
-                    try {
-                        nonce = miner.mine(v.toString(), 4);
-                        election.add(v, nonce);
-                    } catch (RemoteException ex) {
-                        Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (Exception ex) {
-                        Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }).start();
+                int nonce;
+                try {
+                    nonce = miner.mine(v.toString(), 4);
+                    election.add(v, nonce);
+                } catch (RemoteException ex) {
+                    Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (Exception ex) {
+                    Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
                 //nao atualiza porque fica a calcular o hash
                 JOptionPane.showMessageDialog(this, "Vote from  " + myUser.getName() + " added!");
