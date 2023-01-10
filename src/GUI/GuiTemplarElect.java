@@ -131,6 +131,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
         jPanel3.setMaximumSize(new java.awt.Dimension(400, 500));
 
+        lstBlockChain.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BlockChain", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Monospaced", 1, 12))); // NOI18N
         lstBlockChain.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
@@ -151,14 +152,14 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtSignature.setBackground(new java.awt.Color(255, 255, 255));
         txtSignature.setColumns(20);
         txtSignature.setRows(5);
-        txtSignature.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Signature", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtSignature.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Signature", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Monospaced", 1, 12))); // NOI18N
         txtSignature.setMaximumSize(new java.awt.Dimension(11, 39));
         jScrollPane1.setViewportView(txtSignature);
 
         jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
 
         cbCongressPerson.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbCongressPerson.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Congress Person", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        cbCongressPerson.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Congress Person", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Monospaced", 1, 12))); // NOI18N
         cbCongressPerson.setMaximumSize(new java.awt.Dimension(11, 39));
         cbCongressPerson.setMinimumSize(new java.awt.Dimension(11, 39));
         jScrollPane4.setViewportView(cbCongressPerson);
@@ -169,7 +170,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtVoter.setBackground(new java.awt.Color(255, 255, 255));
         txtVoter.setColumns(20);
         txtVoter.setRows(5);
-        txtVoter.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Voter", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtVoter.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Voter", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Monospaced", 1, 12))); // NOI18N
         txtVoter.setMaximumSize(new java.awt.Dimension(11, 39));
         txtVoter.setName(""); // NOI18N
         txtVoter.setPreferredSize(new java.awt.Dimension(230, 100));
@@ -210,7 +211,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
 
         UserData.setEditable(false);
         UserData.setBackground(new java.awt.Color(255, 255, 255));
-        UserData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        UserData.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "User", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Monospaced", 1, 12))); // NOI18N
         jScrollPane2.setViewportView(UserData);
 
         jScrollPane3.setBackground(new java.awt.Color(255, 255, 255));
@@ -218,13 +219,14 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         txtElection.setColumns(20);
         txtElection.setRows(5);
         txtElection.setText(" ");
-        txtElection.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Microsoft PhagsPa", 1, 12))); // NOI18N
+        txtElection.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Votes", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Monospaced", 1, 12))); // NOI18N
         txtElection.setMaximumSize(new java.awt.Dimension(2147483647, 100));
         txtElection.setPreferredSize(new java.awt.Dimension(230, 100));
         jScrollPane3.setViewportView(txtElection);
 
         txtBlock.setColumns(20);
         txtBlock.setRows(5);
+        txtBlock.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Block", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Monospaced", 1, 12))); // NOI18N
         jScrollPane7.setViewportView(txtBlock);
 
         btVote.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -249,7 +251,7 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)

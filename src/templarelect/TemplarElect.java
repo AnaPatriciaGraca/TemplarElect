@@ -69,6 +69,7 @@ public class TemplarElect implements Serializable{
     // method to add the votes on the election if the vote is valid
     public void add(TemplarVote v, int nonce) throws TemplarElectException, Exception{
         if (isValid(v)) {
+            System.out.println(nonce);
             voteList.add(v.toBase64(),DIFICULTY, nonce);
         } else {
             throw new Exception("Transaction not valid");

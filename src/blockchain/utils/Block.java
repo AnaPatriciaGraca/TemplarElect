@@ -62,7 +62,8 @@ public class Block implements Serializable {
     
     
     public String calculateHash() throws Exception {
-        return Hash.getHash(nonce + previousHash + data);
+        //return Hash.getHash(nonce + previousHash + data);
+        return "";
     }
 
     public String toString() {
