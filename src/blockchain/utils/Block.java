@@ -80,6 +80,13 @@ public class Block implements Serializable {
     public boolean isValid() throws Exception {
         return currentHash.equals(calculateHash());
     }
+    
+    public String getFullInfo(){
+        return "Previous :\n\t " + previousHash+
+                "\ndata  :\n\t" + data+
+                "\nNonce : " + nonce+
+                "\nHash  :\n\t"+ currentHash;
+    }
 
 
 }

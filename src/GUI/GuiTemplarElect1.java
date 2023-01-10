@@ -5,7 +5,6 @@
 package GUI;
 
 import Test.TemplarElectException;
-import blockchain.utils.Block;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Base64;
@@ -13,7 +12,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import templarElect.User;
 import templarelect.TemplarElect;
@@ -23,7 +21,7 @@ import templarelect.TemplarVote;
  *
  * @author AnaGraca
  */
-public class GuiTemplarElect extends javax.swing.JFrame {
+public class GuiTemplarElect1 extends javax.swing.JFrame {
 
     private static final long serialVersionUID = 4891176181486442877L;
 
@@ -36,15 +34,12 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     /**
      * Creates new form GuiTemplarElect
      */
-    public GuiTemplarElect(User user) {
+    public GuiTemplarElect1(User user) {
         initComponents();
 
         try {
             this.myUser = user;
             election = TemplarElect.load(fileName);
-            DefaultListModel model = new DefaultListModel();
-            model.addAll(election.getBlockChain().getChain());
-            lstBlockChain.setModel(model);
         } catch (IOException ex) {
             try {
                 election = new TemplarElect();
@@ -101,10 +96,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         UserData = new javax.swing.JTextPane();
         txtTotalVotes = new javax.swing.JLabel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        lstBlockChain = new javax.swing.JList<>();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        txtBlock = new javax.swing.JTextArea();
 
         btElectionTotals.setText("Election Totals");
         btElectionTotals.addActionListener(new java.awt.event.ActionListener() {
@@ -166,17 +157,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         UserData.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jScrollPane2.setViewportView(UserData);
 
-        lstBlockChain.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane8.setViewportView(lstBlockChain);
-
-        txtBlock.setColumns(20);
-        txtBlock.setRows(5);
-        jScrollPane7.setViewportView(txtBlock);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,39 +168,30 @@ public class GuiTemplarElect extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane8))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addComponent(jScrollPane6)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3))
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane3))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTotalVotes, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -246,25 +217,21 @@ public class GuiTemplarElect extends javax.swing.JFrame {
         try {
             if (!hasVoted) {
                 election.add(v);
-                //nao atualiza porque fica a calcular o hash
+                
                 JOptionPane.showMessageDialog(this, "Vote from  " + myUser.getName() + " added!");
             }else{
                 JOptionPane.showMessageDialog(this, "User " + myUser.getName() + " already voted!");
-
+                
             }
-            //atualizar campos e guardar ficheiro
+            txtElection.setText(election.toString());
             election.save(fileName);
             txtTotalVotes.setText( "Total number of votes: "+ Integer.toString(election.totalVotes()-1));
-            Block b = (Block) lstBlockChain.getSelectedValues()[0];
-            txtBlock.setText(b.getFullInfo());
-            txtElection.setText(election.toString());
-            
         } catch (TemplarElectException ex) {
             ex.show();
         } catch (IOException ex) {
-            Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GuiTemplarElect1.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(GuiTemplarElect.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GuiTemplarElect1.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_btVoteActionPerformed
@@ -334,10 +301,6 @@ public class GuiTemplarElect extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JList<String> lstBlockChain;
-    private javax.swing.JTextArea txtBlock;
     private javax.swing.JTextArea txtElection;
     private javax.swing.JTextArea txtSignature;
     private javax.swing.JLabel txtTotalVotes;

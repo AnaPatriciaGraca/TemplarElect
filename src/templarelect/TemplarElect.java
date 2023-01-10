@@ -29,6 +29,10 @@ public class TemplarElect implements Serializable{
 
     private final BlockChain voteList;
 
+    public BlockChain getBlockChain(){
+        return voteList;
+    }
+    
     public TemplarElect() throws Exception {
         voteList = new BlockChain();
         TemplarVote genesis = new TemplarVote("System", "Master");
